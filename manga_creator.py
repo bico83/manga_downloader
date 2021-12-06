@@ -1,3 +1,4 @@
+import argparse
 import os
 import re
 from bs4 import BeautifulSoup
@@ -66,7 +67,7 @@ def get_images_per_chapter(chapters_url, chapter_ids, dest):
         for id, url in enumerate(urls):
             response = requests.get(url)
             folder = os.path.join(dest, f'chapter_{chapter_id}')
-            file = os.path.join(folder, f'sample_{id}.jpg')
+            file = os.path.join(folder, f'image_{id}.jpg')
             if not os.path.isdir(folder):
                 os.mkdir(folder)
             if response.status_code == 200:
@@ -76,12 +77,22 @@ def get_images_per_chapter(chapters_url, chapter_ids, dest):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--path',
+                        help='Path where the book will be downloaded to')
+    parser.add_argument('-l', '--link',
+                        help='link to kissmanga book')
+    args = parser.parse_args()
+
     # Download manga full collection
+    get_manga(source=args.link,
+               dest=args.path)
+
     # get_manga(source=f'http://kissmanga.nl/manga/naruto-full-color',
     #           dest=f'/Users/miguelpalos/Downloads/miguel_palos/mamadas_de_bico/')
 
-    get_manga(source=f'http://kissmanga.nl/manga/cowboy-bebop',
-              dest=f'/Users/miguelpalos/Downloads/miguel_palos/mamadas_de_bico/')
+    #get_manga(source=f'http://kissmanga.nl/manga/cowboy-bebop',
+    #          dest=f'/Users/miguelpalos/Downloads/miguel_palos/mamadas_de_bico/')
 
     # Download a single chapter of the whole manga
     # get_manga(full_collection=False,

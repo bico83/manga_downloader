@@ -17,11 +17,16 @@ pip install requests
 ```
 
 
-## Finding your favorite mangas
-1. Open the manga_creator.py file
-2. Go to the main section
-3. Replace the source parameter by the link of your favorite manga in http://kissmanga.nl
-4. Replace the destination parameter by a folder name to store the downloaded manga
+## Download your favorite mangas
+Two parameters are enabled:
+
+-p, --path: This is the folder where the chapters will be stored
+
+-l, --link: The link to the manga in Kissmanga, e.g.: http://kissmanga.nl/manga/chainsaw-man
+
+Example:
+
+\>python manga_creator.py --path C:\chainsaw-man --link http://kissmanga.nl/manga/chainsaw-man
 
 > ##### Downloading Collections
 > 
